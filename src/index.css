@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #f0f9f2;
+  --color-brand-100: #dcf1e1;
+  --color-brand-200: #bbe3c5;
+  --color-brand-300: #8ecfa0;
+  --color-brand-400: #5ab574;
+  --color-brand-500: #3fa055;
+  --color-brand-600: #2f8f3a;
+  --color-brand-700: #287a32;
+  --color-brand-800: #1d5a2a;
+  --color-brand-900: #134020;
+  --font-display: 'Unbounded', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body { background-image: radial-gradient(900px 400px at 85% -10%, #dcf4e3 0%, transparent 60%); background-attachment: fixed; }
+  html { -webkit-text-size-adjust: 100%; }
+  input, select, textarea { font-size: 16px; }
+  @media (min-width: 640px) { input, select, textarea { font-size: inherit; } }
+
+  code, pre, .font-mono {
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+@media print {
+  .log-modal-overlay { position: static !important; background: none !important; overflow: visible !important; padding: 0 !important; backdrop-filter: none !important; }
+  .log-modal-panel { box-shadow: none !important; background: none !important; padding: 0 !important; max-width: none !important; border-radius: 0 !important; }
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  body.print-single .sheet-wrap:not(.print-target) {
+    display: none !important;
+  }
+  .sheet-wrap {
+    break-after: page;
+  }
+  .sheet-wrap:last-child {
+    break-after: auto;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
+
+
+/* Login: a short sideways shake when the password is rejected */
+@keyframes login-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(3px); }
+}
+.login-shake { animation: login-shake 0.4s ease-in-out; }
+@media (prefers-reduced-motion: reduce) {
+  .login-shake { animation: none; }
+}
+
+
+/* Login: the whole page is the stage */
+.login-bg {
+  background:
+    radial-gradient(60% 70% at 78% 50%, rgba(63, 160, 85, 0.1) 0%, transparent 70%),
+    radial-gradient(120% 90% at 35% 25%, #15533d 0%, #0b2f25 55%, #071f19 100%);
+}
+@media (min-width: 1024px) {
+  .login-bg {
+    background:
+      radial-gradient(40% 70% at 78% 50%, rgba(63, 160, 85, 0.1) 0%, transparent 70%),
+      radial-gradient(69% 90% at 20% 40%, #15533d 0%, #0b2f25 55%, #071f19 100%);
+  }
+}
+/* Keep Chrome's autofill from painting the glass inputs white/yellow */
+.login-input:-webkit-autofill,
+.login-input:-webkit-autofill:hover,
+.login-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  caret-color: #fff;
+  box-shadow: 0 0 0 1000px #164a39 inset;
+  transition: background-color 9999s ease-in-out 0s;
+}

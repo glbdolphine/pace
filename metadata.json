@@ -1,0 +1,5 @@
+{
+  "name": "Pace IT EDC Management",
+  "description": "Pace IT EDC connection log records, reseller management, and automated CSV importer.",
+  "requestFramePermissions": []
+}
